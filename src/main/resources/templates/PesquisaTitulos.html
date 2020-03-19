@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html xmlns="http://www.n3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{LayoutPadrao}">
 
 <head>
 	<title>Pesquisa de Títulos</title>
@@ -9,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/style.css" />
 </head>
 
-<body>
+<section layout:fragment="conteudo">
 	<nav class="navbar navbar-inverse navbar-static-top">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -38,8 +40,16 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td colspan="6">Nenhum título encontrado</td>
+						<tr th:each="titulo: ${titulos}">
+							<td class="text-center" th:text="${titulo.codigo}">1</td>
+							<td th:text="${titulo.descricao}"></td>
+							<td class="text-right" th:text="${{titulo.dataVencimento}}"></td>
+							<td class="text-center" th:text="|R$ ${{titulo.valor}}|"></td>
+							<td class="text-center">
+								<span class="label"  th:text="${titulo.status.descricao}"
+									th:classappend="${titulo.pendente ? 'label-danger' : 'label-success'}"></span>
+							</td>
+							<th class="col-md-1"></th>
 						</tr>
 					</tbody>
 				</table>
@@ -49,6 +59,6 @@
 		
 	<script src="/js/jquery-3.4.1.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
-</body>
+</section>
 
 </html>
