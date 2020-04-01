@@ -9,14 +9,14 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gft.cobranca.model.Usuario;
-import com.gft.cobranca.repository.UsuarioRepository;
+import com.gft.cobranca.repository.Usuarios;
 
 @Repository
 @Transactional
 public class ImplementsUserDetailsService implements UserDetailsService {
 
 	@Autowired
-	private UsuarioRepository ur;
+	private Usuarios ur;
 	
 	@Override
 	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
