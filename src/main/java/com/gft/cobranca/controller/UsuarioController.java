@@ -2,6 +2,7 @@ package com.gft.cobranca.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -37,6 +38,7 @@ public class UsuarioController {
 		}
 		
 		try {
+			usuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
 			cadastroUsuarioService.salvar(usuario);		
 			attributes.addFlashAttribute("mensagem", "Usuário salvo com sucesso");
 			return "redirect:/usuarios/novo";			

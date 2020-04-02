@@ -13,7 +13,6 @@ public class CobrancaApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CobrancaApplication.class, args);
-		System.out.println(new BCryptPasswordEncoder().encode("123"));
 	}
 	
 	@Bean
